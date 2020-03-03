@@ -1,20 +1,65 @@
+/* id's */
+#outer{
+    width:100%;
+    text-align: left;
+}
+
+/* classes */
+.inner{
+  display: inline-block;
+}
+
+.hidden{
+  display: none;
+}
+
+/* button classes */
+.OneJa{
+  background-color: green;
+}
+.OneNee{
+  background-color: deepskyblue;
+}
+/* elements */
+button{
+  border-radius: 8px;
+  border-width: 3px;
+  border-color: orange;
+  background-color: rgb(254, 0, 0);
+  min-height: 3em;
+  min-width: 4em;
+  cursor: pointer;
+}
+
 * {
   box-sizing: border-box;
 }
+
 html {
   margin: 0;
   padding: 0;
   font: 100% / 200% 'Trebuchet MS';
 }
+
 body {
   font-size: 1em;
   padding: 0;
   margin: 0;
   color: pink;
-  background-color: #000;
+  background-color: black;
   max-width: 50em;
   margin: 0 auto;
 }
+
 main {
   padding: 2rem;
+}
+
+p{
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+P:hover{
+  color: green;
 }

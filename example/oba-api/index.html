@@ -8,11 +8,52 @@
   </head>
   <body>
 
-
     <main>
-      <h1>OBA Api</h1>
-    </main>
+      <h1>Spreekbeurt helper</h1>
 
-    <script src="static/js/app.js"></script>
+      <article id="begin">
+        <h1>Hallo, vandaag ga ik je helpen met je spreekbeurt</br>
+        Weet je al een onderwerp voor je spreekbeurt?
+        </h1>
+        <div id="outer">
+          <div class="inner">
+          <button class="OneJa" type="button" onClick="renderBegin(true);">ja</button>
+          </div>
+          
+          <div class="inner">
+          <button class="OneNee" type="button" class="001Nee" onClick="renderBegin(false)">Nee</button>
+          </div>
+        </div>      
+      </article>
+
+      <article id="onderwerpInput" class="hidden">
+        <h2>Wat is je onderwerp?</h2>
+        <label for="onderwerpInputValue">Onderwerp: </label>
+        <input type="text" id="onderwerpInputValue" name="onderwerpInputValue"><br>
+        <button type="button" onclick="renderBooks()">Oké</button>
+      </article>
+
+      <article id="noSubject" class="hidden">
+        <h2>Dat is geen probleem! We gaan wat leuks voor je zoeken.</h2>
+        <h3>Als je wat leuks ziet in deze lijst druk er dan op!</h3>
+
+        <section id="randomExamples">
+          <p id="p1"></p>
+          <p id="p2"></p>
+          <p id="p3"></p>
+          <p id="p4"></p>
+          <p id="p5"></p>
+        </section>
+
+        <button type="button" onclick="renderRandomSubjects()">Meer boeken</button>
+      </article>
+
+      <article id="gotSubject" class="hidden">
+        <h2>Ik ga wat leuke boeken voor je zoeken. Dit kan even duren!</h2>
+      </article>
+
+    </main>
+    <script src="./static/js/vendor/transparency.js"></script>
+    <script src="./static/js/app.js"></script>
   </body>
 </html>
