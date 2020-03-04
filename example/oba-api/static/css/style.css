@@ -3,10 +3,53 @@
     width:100%;
     text-align: left;
 }
+#randomSubjectCheck{
+  text-decoration: underline;
+  color: red;
+}
 
 /* classes */
 .inner{
   display: inline-block;
+}
+
+.container{
+  display: grid;
+  grid-template-columns: 30% 50px auto auto 20%;
+  grid-template-rows: 25% auto;
+  width: 100vw;
+}
+
+.itemImage{
+  width: 10em;
+  height: 10em;
+  grid-column-start: 4;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 1;
+}
+
+.middle{
+  grid-column-start: 3;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 1;
+}
+
+.bottom{
+  grid-column-start: 3;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 2;
+}
+.bottomItem{
+  border: 5px solid orangered;
+  padding: 10px;
+}
+
+.containerBottom{
+  display: grid;
+  grid-template-columns: 20% 20% 20% 20% 20%;
 }
 
 .hidden{
@@ -14,20 +57,22 @@
 }
 
 /* button classes */
-.OneJa{
+.BtnJa{
   background-color: green;
 }
-.OneNee{
+.BtnNee{
   background-color: deepskyblue;
 }
 /* elements */
 button{
+  font-weight: bold;
+  font-size: large;
   border-radius: 8px;
   border-width: 3px;
   border-color: orange;
   background-color: rgb(254, 0, 0);
-  min-height: 3em;
-  min-width: 4em;
+  min-height: 4em;
+  min-width: 5em;
   cursor: pointer;
 }
 
@@ -47,7 +92,6 @@ body {
   margin: 0;
   color: pink;
   background-color: black;
-  max-width: 50em;
   margin: 0 auto;
 }
 

@@ -8,7 +8,11 @@
   </head>
   <body>
 
-    <main>
+    <main class="container">
+      <div class="middle">
+      <article id="restart" class="hidden">
+        <p onclick="restart()">Klik hier om opnieuw te beginnen.</p>
+      </article>
       <h1>Spreekbeurt helper</h1>
 
       <article id="begin">
@@ -17,42 +21,66 @@
         </h1>
         <div id="outer">
           <div class="inner">
-          <button class="OneJa" type="button" onClick="renderBegin(true);">ja</button>
+          <button class="BtnJa" type="button" onClick="CheckIfSubject(true);">ja</button>
           </div>
           
           <div class="inner">
-          <button class="OneNee" type="button" class="001Nee" onClick="renderBegin(false)">Nee</button>
+          <button class="BtnNee" type="button" onClick="CheckIfSubject(false)">Nee</button>
           </div>
         </div>      
       </article>
 
+      <!-- yes route -->
       <article id="onderwerpInput" class="hidden">
         <h2>Wat is je onderwerp?</h2>
+        <h3 id="incorrectCheck" class="hidden">Dat herken ik niet, kijk of je geen speciale tekens hebt gebruikt!</h3>
         <label for="onderwerpInputValue">Onderwerp: </label>
         <input type="text" id="onderwerpInputValue" name="onderwerpInputValue"><br>
         <button type="button" onclick="renderBooks()">Oké</button>
-      </article>
-
-      <article id="noSubject" class="hidden">
-        <h2>Dat is geen probleem! We gaan wat leuks voor je zoeken.</h2>
-        <h3>Als je wat leuks ziet in deze lijst druk er dan op!</h3>
-
-        <section id="randomExamples">
-          <p id="p1"></p>
-          <p id="p2"></p>
-          <p id="p3"></p>
-          <p id="p4"></p>
-          <p id="p5"></p>
-        </section>
-
-        <button type="button" onclick="renderRandomSubjects()">Meer boeken</button>
       </article>
 
       <article id="gotSubject" class="hidden">
         <h2>Ik ga wat leuke boeken voor je zoeken. Dit kan even duren!</h2>
       </article>
 
+      <!-- no route -->
+      <article id="noSubject" class="hidden">
+        <h2>Dat is geen probleem! We gaan wat leuks voor je zoeken.</h2>
+        <h3>Als je wat leuks ziet in deze lijst druk er dan op!</h3>
+
+        <section id="randomExamples">
+          <p id="p1" onclick="checkSubject('p1')"></p>
+          <p id="p2" onclick="checkSubject('p2')"></p>
+          <p id="p3" onclick="checkSubject('p3')"></p>
+          <p id="p4" onclick="checkSubject('p4')"></p>
+          <p id="p5" onclick="checkSubject('p5')"></p>
+        </section>
+
+        <button type="button" onclick="renderRandomSubjects()">Meer onderwerpen</button>
+      </article>
+
+      <article id="confirmRandomSubject" class="hidden">
+        <h1>Weet je zeker dat je dit onderwerp wil?</h1>
+        <h2 id="randomSubjectCheck"></h2>
+        <div class="inner">
+          <button class="BtnJa" type="button" onClick="checkRandomSubject(true)">ja</button>
+          </div>
+          
+          <div class="inner">
+          <button class="BtnNee" type="button" class="001Nee" onClick="checkRandomSubject(false)">Nee</button>
+          </div>
+      </article>
+    </div>
+
+    <img id="catImage" class="itemImage" src="./static/img/hello.png">
+
     </main>
+
+    <!-- book list -->
+    <div id="books" class="containerBottom">
+
+    </div>
+
     <script src="./static/js/vendor/transparency.js"></script>
     <script src="./static/js/app.js"></script>
   </body>
