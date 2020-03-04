@@ -46,10 +46,15 @@
   border: 5px solid orangered;
   padding: 10px;
 }
+.bottomImage{
+  width: 100%;
+  animation: pulse 3s linear infinite;
+}
 
 .containerBottom{
   display: grid;
-  grid-template-columns: 20% 20% 20% 20% 20%;
+  grid-template-columns: 20vw 20vw 20vw 20vw 20vw;
+  justify-items: center;
 }
 
 .hidden{
@@ -106,4 +111,16 @@ p{
 
 P:hover{
   color: green;
+}
+
+a{
+  color: red;
+}
+
+@keyframes pulse{
+  0%{transform: scale(1.0);}
+  25%{transform: scale(1.15);}
+  50%{transform: scale(1.0);}
+  75%{transform: scale(0.85);}
+  100%{transform: scale(1.0);}
 }

@@ -187,25 +187,28 @@ function render(data) {
   const results = data.results;
   console.dir(results);
 
-let newData = {
-  h2: results
-}
+  //data is in and stuff can be changed
+  removeHidden('books');
+  removeHidden('gotData');
+  addHidden('gotSubject');
+  catImage.src = './static/img/Wow.png';
 
+  //loop through results
   results.forEach((item, i) => {
-    console.log(i);
+    let randomImage = imageList[Math.floor(Math.random() * imageList.length)];
+
     if(i % 2 == 0){
       const html = `
-              <article class="bottomItem">
-                <h2>${item.titles[0]}</h2>
-                <p>${item.summaries ? item.summaries[0] : 'Geen samenvatting'}</p>
-                <img src="${
-                  item.coverimages ? item.coverimages[1] : 'Geen samenvatting'
-                }">
-                <p>${item.detailLink ? item.detailLink : 'geen link naar site'}</p>
-              </article>
+            <article class="bottomItem">
+              <h2>${item.titles[0]}</h2>
+              <p>${item.summaries ? item.summaries[0] : 'Geen samenvatting'}</p>
+              <img src="${
+                item.coverimages ? item.coverimages[1] : 'Geen samenvatting'
+              }">
+              <a href=${item.detailLink ? item.detailLink : 'geen link naar site'}>Link naar de oba</a>
+            </article>
             `;
-            removeHidden('books');
-            catImage.src = './static/img/Wow.png';
+            
             //Transparency.render(document.getElementById('books'), newData);
       //main.insertAdjacentHTML('afterend', html);
       const bookArticle = document.getElementById('books');
@@ -213,7 +216,7 @@ let newData = {
       }else{
         const html = `
           <article classs="bottomItem">
-            <img id="catImage" src="./static/img/hello.png">
+            <img id="catImage" class="bottomImage" src=${randomImage}>
           </article>
         `;
         const bookArticle = document.getElementById('books');
@@ -227,8 +230,8 @@ function routing(){
       'overview': () => {
       overview();
       },
-      '/:name': () => {
-          details();
+      '/:id': (id) => {
+          details(id);
       }
   });
 }
