@@ -23,6 +23,7 @@ export function renderBookDetail(data, id){
     addHidden('books');
     addHidden('gotData');
   
+    removeHidden('detailText');
     removeHidden('bookDetail');
   
     let newdata = {

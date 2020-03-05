@@ -47,17 +47,21 @@
         <h2>Kijk eens aan, wat vind je hier van? Bekijk alle boeken eens even rusig.</h2>
       </article>
 
+      <article id="detailText" class="hidden">
+        <h2>Heb je intresse in dit boek? Ga naar de Oba site om deze te reserveren!</h2>
+      </article>
+
       <!-- no route -->
       <article id="noSubject" class="hidden">
         <h2>Dat is geen probleem! We gaan wat leuks voor je zoeken.</h2>
         <h3>Als je wat leuks ziet in deze lijst druk er dan op!</h3>
 
         <section id="randomExamples">
-          <p id="p1"></p>
-          <p id="p2"></p>
-          <p id="p3"></p>
-          <p id="p4"></p>
-          <p id="p5"></p>
+          <p id="p1" class="randomSubject"></p>
+          <p id="p2" class="randomSubject"></p>
+          <p id="p3" class="randomSubject"></p>
+          <p id="p4" class="randomSubject"></p>
+          <p id="p5" class="randomSubject"></p>
         </section>
 
         <button id="renderRandomSubjects" type="button">Meer onderwerpen</button>
@@ -83,7 +87,7 @@
         <p id="detailSummary">summary</p>
         <img id="detailImage" class="detailImage" src="" alt="plaatje boek"><br>
         <a id="detailObaLink" href="">Naar Oba site</a><br>
-        <button id="detailBack" onclick="back">Terug</button>
+        <button id="detailBack">Terug</button>
       </div>
     </div>
 

@@ -155,6 +155,7 @@ function checkRandomSubject(clickedYes){
 
 function detailBackToList(){
   addHidden('bookDetail');
+  addHidden('detailText');
   removeHidden('books');
 
   routie('');
