@@ -2,8 +2,6 @@ import{GetData} from './api.js'
 import{renderRandomSubjects} from './renderer.js'
 import{routing} from './routing.js'
 
-//https://zoeken.oba.nl/api/v1/details/?id=|oba-catalogus|376584&authorization=1e19898c87464e239192c8bfe422f280&detaillevel=Extended&output=json
-
 let currentSubject;
 
 export const catImage = document.getElementById('catImage');
@@ -76,7 +74,7 @@ function CheckIfSubject(clickedYes){
   if(clickedYes){
     //child has a subject and has to enter it in a input field
     removeHidden('onderwerpInput');
-    catImage.src = './static/img/questionMark.png'
+    catImage.src = './example/oba-api/static/img/questionMark.png'
     //clear input
     document.getElementById('onderwerpInputValue').value = '';
     
@@ -97,7 +95,7 @@ function renderBooks(){
 
   console.log('boe');
 
-  catImage.src = './static/img/Wait.png';
+  catImage.src = './example/oba-api/static/img/Wait.png';
 
   let regex = /^[A-Za-z0-9 ]+$/;
 
@@ -122,7 +120,7 @@ function renderBooks(){
 // no route
 //called after clicking button with random subject
 function checkSubject(id){
-  catImage.src = './static/img/questionMark.png';
+  catImage.src = './example/oba-api/static/img/questionMark.png';
 
   const randomSubject = document.getElementById(id).textContent;
 
@@ -144,7 +142,7 @@ function checkRandomSubject(clickedYes){
     if(currentSubject != null){
       removeHidden('gotSubject');
       addHidden('confirmRandomSubject');
-      catImage.src = './static/img/Wait.png';
+      catImage.src = './example/oba-api/static/img/Wait.png';
       GetData(currentSubject);
     }
   }else{

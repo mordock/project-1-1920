@@ -1,15 +1,15 @@
 import{catImage, removeHidden, addHidden} from './app.js'
 
 const imageList = [
-    './static/img/Stretch.png', 
-    './static/img/Clapping.png', 
-    './static/img/Power.png', 
-    './static/img/Happy.png',
-    './static/img/Smart.png',
-    './static/img/Good.png', 
-    './static/img/Think.png', 
-    './static/img/IGetIt.png', 
-    './static/img/Awesome.png'
+    './example/oba-api/static/img/Stretch.png', 
+    './example/oba-api/static/img/Clapping.png', 
+    './example/oba-api/static/img/Power.png', 
+    './example/oba-api/static/img/Happy.png',
+    './example/oba-api/static/img/Smart.png',
+    './example/oba-api/static/img/Good.png', 
+    './example/oba-api/static/img/Think.png', 
+    './example/oba-api/static/img/IGetIt.png', 
+    './example/oba-api/static/img/Awesome.png'
   ];
 
   const exampleList = ['computers', 'tijgers', 'bomen',
@@ -19,7 +19,7 @@ const imageList = [
   'auto', 'hout', 'oertijd', 'dinosaurus'];
 
 export function renderBookDetail(data, id){
-    catImage.src = './static/img/Smart.png';
+    catImage.src = './example/oba-api/static/img/Smart.png';
     addHidden('books');
     addHidden('gotData');
   
@@ -51,7 +51,7 @@ export function render(data) {
     removeHidden('books');
     removeHidden('gotData');
     addHidden('gotSubject');
-    catImage.src = './static/img/Wow.png';
+    catImage.src = './example/oba-api/static/img/Wow.png';
   
     //loop through results
     results.forEach((item, i) => {
@@ -86,7 +86,7 @@ export function render(data) {
 }
 
 export function renderRandomSubjects(){
-    catImage.src = './static/img/Right.png';
+    catImage.src = './example/oba-api/static/img/Right.png';
     removeHidden('noSubject');
   
     let randomExamples = [];
