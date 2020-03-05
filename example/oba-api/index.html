@@ -11,7 +11,7 @@
     <main class="container">
       <div class="middle">
       <article id="restart" class="hidden">
-        <p onclick="restart()">Klik hier om opnieuw te beginnen.</p>
+        <p>Klik hier om opnieuw te beginnen.</p>
       </article>
       <h1>Spreekbeurt helper</h1>
 
@@ -21,11 +21,11 @@
         </h1>
         <div id="outer">
           <div class="inner">
-          <button class="BtnJa" type="button" onClick="CheckIfSubject(true);">ja</button>
+            <button id="trueButton" class="BtnJa" type="button">ja</button>
           </div>
           
           <div class="inner">
-          <button class="BtnNee" type="button" onClick="CheckIfSubject(false)">Nee</button>
+            <button id="falseButton" class="BtnNee" type="button">Nee</button>
           </div>
         </div>      
       </article>
@@ -36,7 +36,7 @@
         <h3 id="incorrectCheck" class="hidden">Dat herken ik niet, kijk of je geen speciale tekens hebt gebruikt!</h3>
         <label for="onderwerpInputValue">Onderwerp: </label>
         <input type="text" id="onderwerpInputValue" name="onderwerpInputValue"><br>
-        <button type="button" onclick="renderBooks()">Oké</button>
+        <button id="renderBooks" type="button">Oké</button>
       </article>
 
       <article id="gotSubject" class="hidden">
@@ -53,27 +53,38 @@
         <h3>Als je wat leuks ziet in deze lijst druk er dan op!</h3>
 
         <section id="randomExamples">
-          <p id="p1" onclick="checkSubject('p1')"></p>
-          <p id="p2" onclick="checkSubject('p2')"></p>
-          <p id="p3" onclick="checkSubject('p3')"></p>
-          <p id="p4" onclick="checkSubject('p4')"></p>
-          <p id="p5" onclick="checkSubject('p5')"></p>
+          <p id="p1"></p>
+          <p id="p2"></p>
+          <p id="p3"></p>
+          <p id="p4"></p>
+          <p id="p5"></p>
         </section>
 
-        <button type="button" onclick="renderRandomSubjects()">Meer onderwerpen</button>
+        <button id="renderRandomSubjects" type="button">Meer onderwerpen</button>
       </article>
 
       <article id="confirmRandomSubject" class="hidden">
         <h1>Weet je zeker dat je dit onderwerp wil?</h1>
         <h2 id="randomSubjectCheck"></h2>
         <div class="inner">
-          <button class="BtnJa" type="button" onClick="checkRandomSubject(true)">ja</button>
-          </div>
+          <button id="randomTrueButton" class="BtnJa" type="button">ja</button>
+
+        </div>
           
-          <div class="inner">
-          <button class="BtnNee" type="button" class="001Nee" onClick="checkRandomSubject(false)">Nee</button>
-          </div>
+        <div class="inner">
+          <button id="randomFalseButton" class="BtnNee" type="button" class="001Nee">Nee</button>
+        </div>
       </article>
+
+      <!-- detail page -->
+      <div id="bookDetail" class="bookDetail hidden">
+        <h2 id="detailTitle">Titel</h2>
+        <p id="detailAuthor">Auteur + jaar</p>
+        <p id="detailSummary">summary</p>
+        <img id="detailImage" class="detailImage" src="" alt="plaatje boek"><br>
+        <a id="detailObaLink" href="">Naar Oba site</a><br>
+        <button id="detailBack" onclick="back">Terug</button>
+      </div>
     </div>
 
     <img id="catImage" class="itemImage" src="./static/img/hello.png">
@@ -86,6 +97,7 @@
     </div>
 
     <script src="./static/js/vendor/transparency.js"></script>
-    <script src="./static/js/app.js"></script>
+    <script src="./static/js/vendor/routie.js"></script>
+    <script type="module" src="./static/js/app.js"></script>
   </body>
 </html>

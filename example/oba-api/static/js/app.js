@@ -1,43 +1,78 @@
-/*** Fetching data -> refactor into module later ***/
-const main = document.querySelector('main');
-const cors = 'https://cors-anywhere.herokuapp.com/';
-const endpoint = 'https://zoeken.oba.nl/api/v1/search/?q=';
-const key = 'f60b69054b02f50180d9c088e06270ea';
-const secret = '34dd0c6e69370e1b0d2b06fb8343c17f';
-const detail = 'Default';
-const lang = 'nl';
+import{GetData} from './api.js'
+import{renderRandomSubjects} from './renderer.js'
+import{routing} from './routing.js'
+
+//https://zoeken.oba.nl/api/v1/details/?id=|oba-catalogus|376584&authorization=1e19898c87464e239192c8bfe422f280&detaillevel=Extended&output=json
 
 let currentSubject;
 
-const exampleList = ['computers', 'tijgers', 'bomen',
- 'internet', 'bloemen', 'ridders', 'middeleeuwen',
-  'haai', 'torenvalk', 'Verenigde Staten', 'Nederland',
-  'koffie', 'bacteriën', 'Tweede wereldoorlog', 'muziek',
-  'auto', 'hout', 'oertijd', 'dinosaurus'];
+export const catImage = document.getElementById('catImage');
 
-const imageList = [
-  './static/img/Stretch.png', 
-  './static/img/Clapping.png', 
-  './static/img/Power.png', 
-  './static/img/Happy.png',
-  './static/img/Smart.png',
-  './static/img/Good.png', 
-  './static/img/Think.png', 
-  './static/img/IGetIt.png', 
-  './static/img/Awesome.png'
-];
-
-const config = {
-  Authorization: `Bearer ${secret}`
-};
-
-const catImage = document.getElementById('catImage');
+init();
+routing();
 
 function init(){
   removeHidden('begin');
+
+  //declaration of all buttons
+  const trueButton = document.getElementById('trueButton');
+  const falseButton = document.getElementById('falseButton');
+  const restartButton = document.getElementById('restart');
+  const renderBooksButton = document.getElementById('renderBooks');
+  const renderRandomSubjectsButton = document.getElementById('renderRandomSubjects');
+  const p1Button = document.getElementById('p1');
+  const p2Button = document.getElementById('p2');
+  const p3Button = document.getElementById('p3');
+  const p4Button = document.getElementById('p4');
+  const p5Button = document.getElementById('p5');
+  const randomTrueButton = document.getElementById('randomTrueButton');
+  const randomFalseButton = document.getElementById('randomFalseButton');
+  const detailBack = document.getElementById('detailBack');
+  trueButton.onclick = function(){
+    CheckIfSubject(true);
+  } 
+  falseButton.onclick = function(){
+    CheckIfSubject(false);
+  }
+  restartButton.onclick = function(){
+    restart();
+  }
+  renderBooksButton.onclick = function(){
+    renderBooks();
+  }
+  renderRandomSubjectsButton.onclick = function(){
+    renderRandomSubjects();
+  }
+  p1Button.onclick = function(){
+    checkSubject('p1');
+  }
+  p2Button.onclick = function(){
+    checkSubject('p2');
+  }
+  p3Button.onclick = function(){
+    checkSubject('p3');
+  }
+  p4Button.onclick = function(){
+    checkSubject('p4');
+  }
+  p5Button.onclick = function(){
+    checkSubject('p5');
+  }
+  randomTrueButton.onclick = function(){
+    checkRandomSubject(true);
+  }
+  randomFalseButton.onclick = function(){
+    checkRandomSubject(false);
+  }
+  detailBack.onclick = function(){
+    detailBackToList();
+  }
+
+  routie("");
 }
 
 function CheckIfSubject(clickedYes){
+  console.log('AAHHHH');
   if(clickedYes){
     //child has a subject and has to enter it in a input field
     removeHidden('onderwerpInput');
@@ -85,30 +120,6 @@ function renderBooks(){
 }
 
 // no route
-function renderRandomSubjects(){
-  catImage.src = './static/img/Right.png';
-  removeHidden('noSubject');
-
-  let randomExamples = [];
-
-  //add 5 random subjects to array
-  for(let i = 0; i < 6; i++){
-    let randomNumber = exampleList[Math.floor(Math.random() * exampleList.length)];
-  
-    randomExamples.push(randomNumber);
-  }
-
-  let data = {
-    p1: randomExamples[0],
-    p2: randomExamples[1],
-    p3: randomExamples[2],
-    p4: randomExamples[3],
-    p5: randomExamples[4]
-  }
-  
-  Transparency.render(document.getElementById('randomExamples'), data);
-}
-
 //called after clicking button with random subject
 function checkSubject(id){
   catImage.src = './static/img/questionMark.png';
@@ -142,96 +153,25 @@ function checkRandomSubject(clickedYes){
   }
 }
 
+function detailBackToList(){
+  addHidden('bookDetail');
+  removeHidden('books');
+
+  routie('');
+}
+
 //restart text
 function restart(){
   location.reload();
 }
 
 //functional methods
-function removeHidden(idValue){
-  let beginArticle = document.getElementById(idValue);
+export function removeHidden(idValue){
+  const beginArticle = document.getElementById(idValue);
   beginArticle.classList.remove('hidden');
 }
 
-function addHidden(idValue){
-  let beginArticle = document.getElementById(idValue);
+export function addHidden(idValue){
+  const beginArticle = document.getElementById(idValue);
   beginArticle.classList.add('hidden');
-}
-
-function buildUrl(query){
-  const url = `${cors}${endpoint}${query}&authorization=${key}&lang=${lang}&detaillevel=${detail}&output=json&p=jeugd`;
-  return url;
-}
-
-//api call
-function GetData(query){
-  fetch(buildUrl(query), config)
-    .then(response => {
-      //handle client error with fetch
-      if(response.ok) {
-        return response.json();
-      }else{
-        return Promise.reject(response);
-      } 
-    })
-    .then(data => {
-      render(data);
-    })
-    .catch(err => {
-      console.log(err);
-    });
-}
-
-// render data
-function render(data) {
-  const results = data.results;
-  console.dir(results);
-
-  //data is in and stuff can be changed
-  removeHidden('books');
-  removeHidden('gotData');
-  addHidden('gotSubject');
-  catImage.src = './static/img/Wow.png';
-
-  //loop through results
-  results.forEach((item, i) => {
-    let randomImage = imageList[Math.floor(Math.random() * imageList.length)];
-
-    if(i % 2 == 0){
-      const html = `
-            <article class="bottomItem">
-              <h2>${item.titles[0]}</h2>
-              <p>${item.summaries ? item.summaries[0] : 'Geen samenvatting'}</p>
-              <img src="${
-                item.coverimages ? item.coverimages[1] : 'Geen samenvatting'
-              }">
-              <a href=${item.detailLink ? item.detailLink : 'geen link naar site'}>Link naar de oba</a>
-            </article>
-            `;
-            
-            //Transparency.render(document.getElementById('books'), newData);
-      //main.insertAdjacentHTML('afterend', html);
-      const bookArticle = document.getElementById('books');
-      bookArticle.innerHTML += html;
-      }else{
-        const html = `
-          <article classs="bottomItem">
-            <img id="catImage" class="bottomImage" src=${randomImage}>
-          </article>
-        `;
-        const bookArticle = document.getElementById('books');
-      bookArticle.innerHTML += html;
-      }
-    });
-}
-
-function routing(){
-  routie({
-      'overview': () => {
-      overview();
-      },
-      '/:id': (id) => {
-          details(id);
-      }
-  });
 }
