@@ -1,6 +1,6 @@
-import{GetData} from './api.js'
-import{renderRandomSubjects} from './renderer.js'
-import{routing} from './routing.js'
+import { GetData } from './api.js'
+import { renderRandomSubjects } from './renderer.js'
+import { routing } from './routing.js'
 
 let currentSubject;
 
@@ -9,7 +9,7 @@ export const catImage = document.getElementById('catImage');
 init();
 routing();
 
-function init(){
+function init() {
   removeHidden('begin');
 
   //declaration of all buttons
@@ -26,61 +26,61 @@ function init(){
   const randomTrueButton = document.getElementById('randomTrueButton');
   const randomFalseButton = document.getElementById('randomFalseButton');
   const detailBack = document.getElementById('detailBack');
-  trueButton.onclick = function(){
+  trueButton.onclick = function () {
     CheckIfSubject(true);
-  } 
-  falseButton.onclick = function(){
+  }
+  falseButton.onclick = function () {
     CheckIfSubject(false);
   }
-  restartButton.onclick = function(){
+  restartButton.onclick = function () {
     restart();
   }
-  renderBooksButton.onclick = function(){
+  renderBooksButton.onclick = function () {
     renderBooks();
   }
-  renderRandomSubjectsButton.onclick = function(){
+  renderRandomSubjectsButton.onclick = function () {
     renderRandomSubjects();
   }
-  p1Button.onclick = function(){
+  p1Button.onclick = function () {
     checkSubject('p1');
   }
-  p2Button.onclick = function(){
+  p2Button.onclick = function () {
     checkSubject('p2');
   }
-  p3Button.onclick = function(){
+  p3Button.onclick = function () {
     checkSubject('p3');
   }
-  p4Button.onclick = function(){
+  p4Button.onclick = function () {
     checkSubject('p4');
   }
-  p5Button.onclick = function(){
+  p5Button.onclick = function () {
     checkSubject('p5');
   }
-  randomTrueButton.onclick = function(){
+  randomTrueButton.onclick = function () {
     checkRandomSubject(true);
   }
-  randomFalseButton.onclick = function(){
+  randomFalseButton.onclick = function () {
     checkRandomSubject(false);
   }
-  detailBack.onclick = function(){
+  detailBack.onclick = function () {
     detailBackToList();
   }
 
   routie("");
 }
 
-function CheckIfSubject(clickedYes){
+function CheckIfSubject(clickedYes) {
   console.log('AAHHHH');
-  if(clickedYes){
+  if (clickedYes) {
     //child has a subject and has to enter it in a input field
     removeHidden('onderwerpInput');
     catImage.src = './example/oba-api/static/img/questionMark.png'
     //clear input
     document.getElementById('onderwerpInputValue').value = '';
-    
+
     addHidden('begin');
     removeHidden('restart');
-  }else{
+  } else {
     //child doesn't have subject and needs help choosing
     renderRandomSubjects();
     addHidden('begin');
@@ -90,7 +90,7 @@ function CheckIfSubject(clickedYes){
 
 // yes route
 //called when clicking oke after input
-function renderBooks(){
+function renderBooks() {
   const subject = document.getElementById('onderwerpInputValue').value;
 
   console.log('boe');
@@ -102,16 +102,16 @@ function renderBooks(){
   //check if special characters used
   let isValid = regex.test(subject);
 
-  if(isValid){
+  if (isValid) {
     console.log('correct');
     addHidden('onderwerpInput');
-  
+
     removeHidden('gotSubject');
 
     currentSubject = subject;
-  
+
     GetData(subject);
-  }else{
+  } else {
     console.log('not correct');
     removeHidden('incorrectCheck');
   }
@@ -119,7 +119,7 @@ function renderBooks(){
 
 // no route
 //called after clicking button with random subject
-function checkSubject(id){
+function checkSubject(id) {
   catImage.src = './example/oba-api/static/img/questionMark.png';
 
   const randomSubject = document.getElementById(id).textContent;
@@ -137,40 +137,41 @@ function checkSubject(id){
 }
 
 //check if person wants that subject
-function checkRandomSubject(clickedYes){
-  if(clickedYes){
-    if(currentSubject != null){
+function checkRandomSubject(clickedYes) {
+  if (clickedYes) {
+    if (currentSubject != null) {
       removeHidden('gotSubject');
       addHidden('confirmRandomSubject');
       catImage.src = './example/oba-api/static/img/Wait.png';
       GetData(currentSubject);
     }
-  }else{
+  } else {
     removeHidden('noSubject');
     addHidden('confirmRandomSubject');
   }
 }
 
-function detailBackToList(){
+function detailBackToList() {
   addHidden('bookDetail');
   addHidden('detailText');
   removeHidden('books');
+  removeHidden('restart');
 
   routie('');
 }
 
 //restart text
-function restart(){
+function restart() {
   location.reload();
 }
 
 //functional methods
-export function removeHidden(idValue){
+export function removeHidden(idValue) {
   const beginArticle = document.getElementById(idValue);
   beginArticle.classList.remove('hidden');
 }
 
-export function addHidden(idValue){
+export function addHidden(idValue) {
   const beginArticle = document.getElementById(idValue);
   beginArticle.classList.add('hidden');
 }
