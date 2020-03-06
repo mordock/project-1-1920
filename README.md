@@ -10,6 +10,9 @@ This web app makes use of the OBA and uses the microlibraries Routie and transpa
 ![alt text](https://github.com/mordock/project-1-1920/blob/master/example/oba-api/static/img/project%20image.png)
 <!-- Maybe a table of contents here? 📚 -->
 
+## Assignment
+We had to possibility to choose from multiple assignments, my choice was a presenation/paper helper for children in primary school. For this assignment I made a small part which helps you with choosing your subject and looking up research material.
+
 <!-- How about a section that describes how to install this project? 🤓 -->
 ## The OBA Api
 This web app uses the OBA Api, documentation can be found here:  
