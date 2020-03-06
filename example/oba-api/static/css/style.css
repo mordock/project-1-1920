@@ -13,11 +13,16 @@
   display: inline-block;
 }
 
+.title{
+  text-shadow: 1px 1px red;
+}
+
 .container{
   display: grid;
   grid-template-columns: 30% 50px auto auto 20%;
   grid-template-rows: 25% auto;
-  width: 100vw;
+  width: calc(100vw - 17px);
+  border: 5px solid orangered;
 }
 
 .itemImage{
@@ -49,7 +54,6 @@
   padding: 10px;
   transform: scale(0.0);
   animation: bottomItemAni .75s linear 1 forwards;
-  /* animation: borderAnimate 5s linear infinite; */
 }
 
 .bookDetail{
@@ -68,7 +72,7 @@
 
 .containerBottom{
   display: grid;
-  grid-template-columns: 20vw 20vw 20vw 20vw 20vw;
+  grid-template-columns: 20vw calc(20vw - 8px) 20vw calc(20vw - 9px) 20vw;
   justify-items: center;
 }
 
@@ -108,7 +112,7 @@ button{
   font-weight: bold;
   font-size: large;
   border-radius: 8px;
-  border-width: 3px;
+  border-width: 4px;
   border-color: orange;
   background-color: rgb(254, 0, 0);
   min-height: 4em;
@@ -153,11 +157,11 @@ a{
 }
 
 @keyframes pulse{
-  0%{transform: scale(1.0);}
-  25%{transform: scale(1.15);}
-  50%{transform: scale(1.0);}
-  75%{transform: scale(0.85);}
-  100%{transform: scale(1.0);}
+  0%{transform: scale(.9);}
+  25%{transform: scale(1);}
+  50%{transform: scale(.9);}
+  75%{transform: scale(.7);}
+  100%{transform: scale(.9);}
 }
 
 @keyframes bottomItemAni{

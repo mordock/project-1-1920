@@ -17,7 +17,7 @@ const exampleList = ['computers', 'tijgers', 'bomen',
   'haai', 'torenvalk', 'Verenigde Staten', 'Nederland',
   'koffie', 'bacteriën', 'Tweede wereldoorlog', 'muziek',
   'auto', 'hout', 'oertijd', 'dinosaurus', 'internet', 'kat',
-  'honden',];
+  'hond', 'plastic', 'licht'];
 
 export function renderBookDetail(data, id) {
   catImage.src = './example/oba-api/static/img/Smart.png';
